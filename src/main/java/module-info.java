@@ -8,9 +8,9 @@ module co.edu.uniquindio.proyectobases {
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
-    opens co.edu.uniquindio.proyectobases to javafx.fxml;
-    exports co.edu.uniquindio.proyectobases;
+    opens co.edu.uniquindio.proyectobases.controller to javafx.fxml;
+    exports co.edu.uniquindio.proyectobases.aplication;
 }
