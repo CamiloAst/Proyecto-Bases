@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectobases.controller.MainViewController">
+<AnchorPane onKeyPressed="#Salir" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectobases.controller.MainViewController">
    <children>
-      <Button layoutX="274.0" layoutY="282.0" mnemonicParsing="false" text="Ingresar" />
-      <Label layoutX="272.0" layoutY="63.0" text="MediCenter" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="236.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="btnIniciar" layoutX="257.0" layoutY="293.0" mnemonicParsing="false" onAction="#OnActionIniciar" text="Iniciar Sesión" />
+      <TextField fx:id="tfUsuario" alignment="CENTER" layoutX="225.0" layoutY="200.0" promptText="Usuario" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/Logo.png" />
-         </image></ImageView>
+         </image>
+      </ImageView>
+      <PasswordField fx:id="pfPassword" alignment="CENTER" layoutX="225.0" layoutY="240.0" promptText="Contraseña" />
    </children>
 </AnchorPane>

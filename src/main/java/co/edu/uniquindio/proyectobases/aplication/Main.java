@@ -22,8 +22,8 @@ public class Main extends Application {
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/Logo.png")));
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/MainView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 500);
-        primaryStage.setTitle("MediCenter");
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        primaryStage.setTitle("BioEssence");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(image);
         primaryStage.show();
