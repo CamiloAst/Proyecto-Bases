@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -11,4 +9,26 @@
             fx:controller="co.edu.uniquindio.proyectobases.controller.ProductosController"
             prefHeight="400.0" prefWidth="600.0">
 
+    <children>
+        <HBox layoutX="10.0" layoutY="10.0" spacing="10.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #dcdcdc; -fx-border-width: 1;">
+            <children>
+                <Button fx:id="btnAgregarProducto" text="Agregar" onAction="#handleAgregarProducto" style="-fx-font-size: 14px;" />
+                <Button fx:id="btnEditarProducto" text="Editar" onAction="#handleEditarProducto" style="-fx-font-size: 14px;" />
+                <Button fx:id="btnEliminarProducto" text="Eliminar" onAction="#handleEliminarProducto" style="-fx-font-size: 14px;" />
+            </children>
+            <padding>
+                <Insets top="5" right="5" bottom="5" left="5"/>
+            </padding>
+        </HBox>
+        
+        <TableView fx:id="tablaProductos" layoutX="10.0" layoutY="50.0" prefHeight="340.0" prefWidth="580.0">
+            <columns>
+                <TableColumn fx:id="columnaIdProducto" text="ID" prefWidth="80.0" />
+                <TableColumn fx:id="columnaNombre" text="Nombre" prefWidth="200.0" />
+                <TableColumn fx:id="columnaPrecio" text="Precio" prefWidth="80.0" />
+                <TableColumn fx:id="columnaIdCategoria" text="Categoría" prefWidth="120.0" />
+                <TableColumn fx:id="columnaIdDescripcionPTO" text="descripcion" prefWidth="100.0" />
+            </columns>
+        </TableView>
+    </children>
 </AnchorPane>

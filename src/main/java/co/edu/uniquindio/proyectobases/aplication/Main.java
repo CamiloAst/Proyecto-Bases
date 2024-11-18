@@ -9,12 +9,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+import static co.edu.uniquindio.proyectobases.controller.AppController.INSTANCE;
 
 public class Main extends Application {
 
     private Stage primaryStage;
     //private static Encuestadora encuestadora = new Encuestadora();
-    private static DatabaseConnection conexion = new DatabaseConnection();
+    //private static DatabaseConnection conexion = new DatabaseConnection();
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -31,7 +32,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        conexion.conectar();
+        INSTANCE.getDatabaseConnection().conectar();
         launch();
     }
 

@@ -13,4 +13,7 @@ module co.edu.uniquindio.proyectobases {
 
     opens co.edu.uniquindio.proyectobases.controller to javafx.fxml;
     exports co.edu.uniquindio.proyectobases.aplication;
+    opens co.edu.uniquindio.proyectobases.aplication.model to javafx.base;
+    exports co.edu.uniquindio.proyectobases.aplication.model;
+    exports co.edu.uniquindio.proyectobases.controller;
 }

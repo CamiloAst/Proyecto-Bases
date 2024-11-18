@@ -108,4 +108,8 @@ public class DashboardController {
         Stage stage2 = (Stage) this.btnConfiguracion.getScene().getWindow();
         stage2.close();
     }
+
+    public void OnActionSalir(ActionEvent actionEvent) {
+        System.exit(0);
+    }
 }
