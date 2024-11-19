@@ -34,43 +34,13 @@ public class DatabaseConnection {
         return cx;
     }
 
-    public boolean guardarProducto(Producto producto) {
-        String sql = "INSERT INTO PRODUCTO (ID_PRODUCTO, NOMBRE, PRECIO, CATEGORIA_ID_CATEGORIA, ID_DESCPRODUCTO) VALUES (?, ?, ?, ?, ?)";
-        try (PreparedStatement pstmt = cx.prepareStatement(sql)) {
-            pstmt.setInt(1, producto.getIdProducto());
-            pstmt.setString(2, producto.getNombre());
-            pstmt.setFloat(3, producto.getPrecio());
-            pstmt.setInt(4, producto.getIdCategoria());
-            pstmt.setInt(5, producto.getIdDescripcionPTO());
-            pstmt.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            System.out.println("Error al guardar el producto");
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public boolean actualizarProducto(Producto producto) {
-        String sql = "UPDATE PRODUCTO SET NOMBRE = ?, PRECIO = ?, CATEGORIA_ID_CATEGORIA = ?, ID_DESCPRODUCTO = ? WHERE ID_PRODUCTO = ?";
-        try (PreparedStatement pstmt = cx.prepareStatement(sql)) {
-            pstmt.setString(1, producto.getNombre());
-            pstmt.setFloat(2, producto.getPrecio());
-            pstmt.setInt(3, producto.getIdCategoria());
-            pstmt.setInt(4, producto.getIdDescripcionPTO());
-            pstmt.setInt(5, producto.getIdProducto());
-            pstmt.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            System.out.println("Error al actualizar el producto");
-            e.printStackTrace();
-            return false;
-        }
-    }
 
     public List<Producto> cargarProductos() {
         List<Producto> listaProductos = new ArrayList<>();
-        String sql = "SELECT * FROM PRODUCTO";
+        String sql = "SELECT p.ID_PRODUCTO, p.NOMBRE, p.PRECIO, c.NOMBRE NOMBRE_CATEGORIA, d.DESCRIPCION " +
+                "FROM PRODUCTO p " +
+                "JOIN CATEGORIA c ON p.CATEGORIA_ID_CATEGORIA = c.ID_CATEGORIA " +
+                "JOIN DESCRIPCION_PTO d ON p.ID_DESCPRODUCTO = d.ID_DESCPRODUCTO";
 
         try (Statement stmt = cx.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
@@ -78,8 +48,8 @@ public class DatabaseConnection {
                         rs.getInt("ID_PRODUCTO"),
                         rs.getString("NOMBRE"),
                         rs.getFloat("PRECIO"),
-                        rs.getInt("ID_CATEGORIA"),
-                        rs.getInt("ID_DESCRIPCION_PTO")
+                        rs.getString("NOMBRE_CATEGORIA"),
+                        rs.getString("DESCRIPCION")
                 );
                 listaProductos.add(producto);
             }
@@ -88,5 +58,37 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
         return listaProductos;
+    }
+    public boolean verificarAdmin(String idUser) {
+        String sql = "SELECT ADMINISTRADOR_ID_ADMINISTRADOR FROM AFILIADO WHERE ID_AFILIADO = ?";
+        try (PreparedStatement pstmt = cx.prepareStatement(sql)) {
+            pstmt.setString(1, idUser);
+            resultSet = pstmt.executeQuery();
+            if (resultSet.next()) {
+                Integer adminId = resultSet.getObject("ADMINISTRADOR_ID_ADMINISTRADOR", Integer.class);
+                if (adminId != null) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al verificar el administrador");
+            e.printStackTrace();}
+        return false;
+    }
+
+    public boolean verificarDatosUsuario(String email, int idUser) {
+        String sql = "SELECT EMAIL,CEDULA FROM AFILIADO WHERE EMAIL = ? AND CEDULA = ?";
+        try (PreparedStatement pstmt = cx.prepareStatement(sql)) {
+            pstmt.setString(1, email);
+            pstmt.setInt(2, idUser);
+            resultSet = pstmt.executeQuery();
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al verificar los datos del usuario");
+            e.printStackTrace();
+        }
+        return false;
     }
 }

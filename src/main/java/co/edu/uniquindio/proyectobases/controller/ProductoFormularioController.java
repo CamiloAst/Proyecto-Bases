@@ -40,8 +40,8 @@ public class ProductoFormularioController {
             idProductoField.setText(String.valueOf(producto.getIdProducto()));
             nombreField.setText(producto.getNombre());
             precioField.setText(String.valueOf(producto.getPrecio()));
-            idCategoriaField.setText(String.valueOf(producto.getIdCategoria()));
-            idDescripcionPTOField.setText(String.valueOf(producto.getIdDescripcionPTO()));
+            idCategoriaField.setText(String.valueOf(producto.getCategoria()));
+            idDescripcionPTOField.setText(String.valueOf(producto.getDescripcionPTO()));
         }
     }
 
@@ -62,13 +62,13 @@ public class ProductoFormularioController {
             producto.setIdProducto(Integer.parseInt(idProductoField.getText()));
             producto.setNombre(nombreField.getText());
             producto.setPrecio(Float.parseFloat(precioField.getText()));
-            producto.setIdCategoria(Integer.parseInt(idCategoriaField.getText()));
-            producto.setIdDescripcionPTO(Integer.parseInt(idDescripcionPTOField.getText()));
+            //producto.setCategoria(Integer.parseInt(idCategoriaField.getText()));
+            //producto.setDescripcionPTO(Integer.parseInt(idDescripcionPTOField.getText()));
 
             guardado = true;
 
             Stage stage = (Stage) idProductoField.getScene().getWindow();
-            databaseConnection.guardarProducto(producto);
+           // databaseConnection.guardarProducto(producto);
 
             stage.close();
         } catch (NumberFormatException e) {

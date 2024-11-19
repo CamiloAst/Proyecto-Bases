@@ -1,7 +1,6 @@
 package co.edu.uniquindio.proyectobases.controller;
 
 import co.edu.uniquindio.proyectobases.aplication.model.Producto;
-import co.edu.uniquindio.proyectobases.connection.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,9 +14,6 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import static co.edu.uniquindio.proyectobases.controller.AppController.INSTANCE;
 
 public class ProductosController {
@@ -30,8 +26,8 @@ public class ProductosController {
     public TableColumn<Producto, Integer> columnaIdProducto;
     public TableColumn<Producto, String> columnaNombre;
     public TableColumn<Producto, Float> columnaPrecio;
-    public TableColumn<Producto, Integer> columnaIdCategoria;
-    public TableColumn<Producto, Integer> columnaIdDescripcionPTO;
+    public TableColumn<Producto, String> columnaCategoria;
+    public TableColumn<Producto, String> columnaDescripcionPTO;
 
     private ObservableList<Producto> listaProductos;
 
@@ -39,8 +35,8 @@ public class ProductosController {
         columnaIdProducto.setCellValueFactory(new PropertyValueFactory<>("idProducto"));
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         columnaPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
-        columnaIdCategoria.setCellValueFactory(new PropertyValueFactory<>("idCategoria"));
-        columnaIdDescripcionPTO.setCellValueFactory(new PropertyValueFactory<>("idDescripcionPTO"));
+        columnaCategoria.setCellValueFactory(new PropertyValueFactory<>("Categoria"));
+        columnaDescripcionPTO.setCellValueFactory(new PropertyValueFactory<>("DescripcionPTO"));
 
         cargarProductosEnTabla();
     }
@@ -53,7 +49,7 @@ public class ProductosController {
     public void handleEditarProducto(ActionEvent actionEvent) {
         Producto seleccionado = tablaProductos.getSelectionModel().getSelectedItem();
         if (seleccionado != null) {
-            abrirFormulario(seleccionado); // Modo editar
+            abrirFormulario(seleccionado);
         } else {
             mostrarAlerta("Error", "Debes seleccionar un producto para editar.", Alert.AlertType.WARNING);
         }
@@ -105,17 +101,17 @@ public class ProductosController {
         tablaProductos.setItems(listaProductos);
     }
 
-    private void guardarProductoEnBaseDeDatos(Producto producto) {
-        if (INSTANCE.getDatabaseConnection().guardarProducto(producto)) {
-            listaProductos.add(producto);
-        }
-    }
+//    private void guardarProductoEnBaseDeDatos(Producto producto) {
+//        if (INSTANCE.getDatabaseConnection().guardarProducto(producto)) {
+//            listaProductos.add(producto);
+//        }
+//    }
 
-    private void actualizarProductoEnBaseDeDatos(Producto producto) {
-        if (INSTANCE.getDatabaseConnection().actualizarProducto(producto)) {
-            tablaProductos.refresh();
-        }
-    }
+//    private void actualizarProductoEnBaseDeDatos(Producto producto) {
+//        if (INSTANCE.getDatabaseConnection().actualizarProducto(producto)) {
+//            tablaProductos.refresh();
+//        }
+//    }
 
     private void eliminarProductoDeBaseDeDatos(Producto producto) {
 //        String sql = "DELETE FROM PRODUCTOS WHERE ID_PRODUCTO = ?";

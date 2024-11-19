@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+import static co.edu.uniquindio.proyectobases.controller.AppController.INSTANCE;
+
 public class MainViewController {
 
     @FXML
@@ -31,7 +33,10 @@ public class MainViewController {
         if (tfUsuario.getText().isBlank() || pfPassword.getText().isBlank()) {
             System.out.println("¡¡ Debe ingresar un usuario y una contraseña !!");
             tfUsuario.requestFocus();
-        }else {
+        } else if (!INSTANCE.getDatabaseConnection().verificarDatosUsuario(tfUsuario.getText(), Integer.parseInt(pfPassword.getText()))) {
+            System.out.println("¡¡ Usuario y/o Contraseña incorrectos !!");
+            tfUsuario.requestFocus();
+        } else {
 
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/Logo.png")));
 
