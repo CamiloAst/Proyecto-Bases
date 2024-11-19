@@ -53,6 +53,7 @@ public class MainViewController {
             stage.show();
 
             Stage stage2 = (Stage) this.btnIniciar.getScene().getWindow();
+            INSTANCE.setUsuario(INSTANCE.getDatabaseConnection().buscarAfiliado(tfUsuario.getText(), pfPassword.getText()));
             stage2.close();
         }
     }

@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="co.edu.uniquindio.proyectobases.controller.MetricasController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="600.0" prefWidth="800.0">
 
+    <children>
+        <!-- Título -->
+        <Label text="Información del Vendedor"
+               layoutX="20.0" layoutY="20.0"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+        <!-- Sección de Datos del Vendedor -->
+        <VBox layoutX="20.0" layoutY="60.0" spacing="10.0" prefWidth="760.0" style="-fx-border-color: #dcdcdc; -fx-border-width: 1; -fx-padding: 10;">
+            <children>
+                <Label text="Datos del Vendedor" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <HBox spacing="20">
+                    <Label text="Nombre:"/>
+                    <Label fx:id="nombreLabel" text="-" style="-fx-font-weight: bold;"/>
+                </HBox>
+                <HBox spacing="20">
+                    <Label text="ID:"/>
+                    <Label fx:id="idLabel" text="-" style="-fx-font-weight: bold;"/>
+                </HBox>
+                <HBox spacing="20">
+                    <Label text="Rango (Jerarquía):"/>
+                    <Label fx:id="rangoLabel" text="-" style="-fx-font-weight: bold;"/>
+                </HBox>
+            </children>
+        </VBox>
+
+        <!-- Sección de Ventas -->
+        <VBox layoutX="20.0" layoutY="200.0" spacing="10.0" prefWidth="760.0" style="-fx-border-color: #dcdcdc; -fx-border-width: 1; -fx-padding: 10;">
+            <children>
+                <Label text="Ventas del Vendedor" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <TableView fx:id="tablaVentas" prefHeight="200.0">
+                    <columns>
+                        <TableColumn text="ID Venta" fx:id="columnaIdVenta" prefWidth="100.0"/>
+                        <TableColumn text="Producto" fx:id="columnaProducto" prefWidth="300.0"/>
+                        <TableColumn text="Cantidad" fx:id="columnaCantidad" prefWidth="100.0"/>
+                        <TableColumn text="Total" fx:id="columnaTotal" prefWidth="100.0"/>
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+
+        <!-- Sección de Afiliados -->
+        <VBox layoutX="20.0" layoutY="450.0" spacing="10.0" prefWidth="760.0" style="-fx-border-color: #dcdcdc; -fx-border-width: 1; -fx-padding: 10;">
+            <children>
+                <Label text="Afiliados Directos" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <TableView fx:id="tablaAfiliados" prefHeight="100.0">
+                    <columns>
+                        <TableColumn text="ID Afiliado" fx:id="columnaIdAfiliado" prefWidth="100.0"/>
+                        <TableColumn text="Nombre" fx:id="columnaNombreAfiliado" prefWidth="300.0"/>
+                        <TableColumn text="Rango" fx:id="columnaRangoAfiliado" prefWidth="200.0"/>
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
